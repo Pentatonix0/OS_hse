@@ -35,3 +35,33 @@
           |                           |                           | (result-1)
 +-------------------+       +-------------------+       +-------------------+
 ```
+### Использование
+```
+./a.out <input1> <input2> <result>
+```
+### Тестирование
+```
+chmod +x run_tests.sh
+./run_tests.sh
+```
+### Тесты
+#### test-1 (max 4 symbols)
+```
+common symbols:abc
+```
+#### test-2 (max 26 symbols)
+```
+common symbols: aeflmnoprt
+```
+#### test-3 (max 269 symbols)
+```
+common symbols: ,-abcdefghilmnoprstuw
+```
+#### test-4 (max 2082 symbols)
+```
+common symbols: ,ABNYabcdefghijklmnoprstuvwy
+```
+#### test-5 (max 21016 symbols)
+```
+common symbols: !"#()*+,-.8:;<=>@ACEILNPRSTV[]_abcdefghijklmnopqrstuvwxyz
+```
