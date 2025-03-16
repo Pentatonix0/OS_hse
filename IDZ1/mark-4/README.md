@@ -63,5 +63,5 @@ common symbols: ,ABNYabcdefghijklmnoprstuvwy
 ```
 #### test-5 (max 21016 symbols)
 ```
-common symbols: !"#()*+,-.8:;<=>@ACEILNPRSTV[]_abcdefghijklmnopqrstuvwxyz
+common symbols: "#()*,-.8:;=>ACEINPRSTV[]_abcdefghijklmnoprstuvwxy
 ```

@@ -5,39 +5,40 @@
 символ в соответствующей выходной строке должен встречаться
 только один раз. Входными и выходными параметрами являются
 имена трех файлов, задающих входные и выходную строки.
-## 5 баллов
+## 8 баллов
 ### Схема решения
 ```
-+-------------------+       +-------------------+       +-------------------+
-|   Parent Process   |       |   Child Process 1  |       |   Child Process 2  |
-| (Main Process)     |       | (Data Processing)  |       | (File Writing)     |
-+-------------------+       +-------------------+       +-------------------+
-          |                           |                           |
-          | 1. Reads input files       |                           |
-          | (source1, source2)         |                           |
-          |                           |                           |
-          | 2. Writes data to FIFOs   |                           |
-          | (read_channel1, read_channel2) |                           |
-          |                           |                           |
-          |                           | 3. Reads data from FIFOs   |
-          |                           | (read_channel1, read_channel2) |
-          |                           |                           |
-          |                           | 4. Processes data          |
-          |                           | (Finds common symbols)     |
-          |                           |                           |
-          |                           | 5. Writes result to FIFO   |
-          |                           | (write_channel)            |
-          |                           |                           |
-          |                           |                           | 6. Reads result from FIFO
-          |                           |                           | (write_channel)
-          |                           |                           |
-          |                           |                           | 7. Writes result to file
-          |                           |                           | (destination)
-+-------------------+       +-------------------+       +-------------------+
++-------------------+       +-------------------+
+|   Process 1        |       |   Process 2        |
+| (File Reading &    |       | (Data Processing & |
+| FIFO Writing)      |       | FIFO Writing)      |
++-------------------+       +-------------------+
+          |                           |
+          | 1. Reads input files       |
+          | (source1, source2)         |
+          |                           |
+          | 2. Writes data to FIFOs    |
+          | (read_channel1, read_channel2) |
+          |                           |
+          |                           | 3. Reads data from FIFOs
+          |                           | (read_channel1, read_channel2)
+          |                           |
+          |                           | 4. Processes data
+          |                           | (Finds common symbols)
+          |                           |
+          |                           | 5. Writes result to FIFO
+          |                           | (write_channel)
+          |                           |
+          | 6. Reads result from FIFO  |
+          | (write_channel)            |
+          |                           |
+          | 7. Writes result to file   |
+          | (destination)              |
++-------------------+       +-------------------+
 ```
 ### Использование
 ```
-./a.out <input1> <input2> <result> <chan1> <chan2> <chan3>
+./process1 <input1> <input2> <result> <chan1> <chan2> <chan3> & sleep 1 && ./process2 <chan1> <chan2> <chan3> &
 ```
 ### Тестирование
 ```
@@ -63,5 +64,5 @@ common symbols: ,ABNYabcdefghijklmnoprstuvwy
 ```
 #### test-5 (max 21016 symbols)
 ```
-common symbols: !"#()*+,-.8:;<=>@ACEILNPRSTV[]_abcdefghijklmnopqrstuvwxyz
+common symbols: "#()*,-.8:;=>ACEINPRSTV[]_abcdefghijklmnoprstuvwxy
 ```

@@ -37,7 +37,7 @@
 ```
 ### Использование
 ```
-./a.out <input1> <input2> <result> <chan1> <chan2> <chan3>
+./a.out <input1> <input2> <result>
 ```
 ### Тестирование
 ```
@@ -63,5 +63,5 @@ common symbols: ,ABNYabcdefghijklmnoprstuvwy
 ```
 #### test-5 (max 21016 symbols)
 ```
-common symbols: !"#()*+,-.8:;<=>@ACEILNPRSTV[]_abcdefghijklmnopqrstuvwxyz
+common symbols: "#()*,-.8:;=>ACEINPRSTV[]_abcdefghijklmnoprstuvwxy
 ```
