@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 	fds[1].events = POLLIN;
 
 	char buffer[1024];
-	int grid_request_interval = 10; // Запрашивать сетку каждые 10 секунд
+	int grid_request_interval = 10; // Запрашивать каждые 10 секунд
 	time_t last_grid_request = time(NULL);
 
 	while (1)

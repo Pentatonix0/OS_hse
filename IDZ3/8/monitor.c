@@ -51,7 +51,6 @@ int main(int argc, char *argv[])
 		close(sock);
 		return 1;
 	}
-	// fprintf(stderr, "[DEBUG] Sent: MONITOR\n");
 
 	// Ожидание ответа OK
 	char buffer[1024];
@@ -65,7 +64,6 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 	buffer[n] = '\0';
-	// fprintf(stderr, "[DEBUG] Received: %s", buffer);
 	if (strcmp(buffer, "OK\n") != 0)
 	{
 		printf("Ошибка идентификации: ожидалось OK, получено %s", buffer);
@@ -85,7 +83,7 @@ int main(int argc, char *argv[])
 
 	while (1)
 	{
-		// Периодический запрос сетки
+		// Периодический запрос 
 		time_t now = time(NULL);
 		if (now - last_grid_request >= grid_request_interval)
 		{
@@ -94,7 +92,6 @@ int main(int argc, char *argv[])
 				perror("Ошибка отправки GET_GRID");
 				break;
 			}
-			// fprintf(stderr, "[DEBUG] Sent GET_GRID\n");
 			last_grid_request = now;
 		}
 
@@ -121,7 +118,7 @@ int main(int argc, char *argv[])
 			// Выводим только таблицу сада
 			if (strstr(buffer, "Итоговое состояние сада:") != NULL)
 			{
-				// fprintf(stderr, "[DEBUG] Received grid\n");
+				
 				print_with_timestamp(buffer);
 			}
 		}
@@ -140,7 +137,6 @@ int main(int argc, char *argv[])
 						perror("Ошибка отправки GET_GRID (ручной)");
 						break;
 					}
-					// fprintf(stderr, "[DEBUG] Sent GET_GRID (manual)\n");
 					last_grid_request = now;
 				}
 				else if (strcmp(input, "exit") == 0 || strcmp(input, "q") == 0)
